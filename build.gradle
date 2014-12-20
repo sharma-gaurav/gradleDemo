@@ -8,7 +8,16 @@ task preMain << {
     println "Going to execute main method"
 }
 
+String mainClass = "demo.gradle.GradleDemo"
+version = "1.0"
+
 task wow(type: JavaExec, dependsOn: 'preMain') {
-    main = "demo.gradle.GradleDemo"
+    main = mainClass
     classpath = sourceSets.main.runtimeClasspath
+}
+
+jar {
+    manifest {
+        attributes("Main-Class": mainClass, "Implementation-Version": version)
+    }
 }
