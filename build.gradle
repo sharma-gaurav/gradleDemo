@@ -3,3 +3,12 @@ apply plugin: 'java'
 sourceSets {
     main.java.srcDirs = ['javasources/main/java']
 }
+
+task preMain << {
+    println "Going to execute main method"
+}
+
+task wow(type: JavaExec, dependsOn: 'preMain') {
+    main = "demo.gradle.GradleDemo"
+    classpath = sourceSets.main.runtimeClasspath
+}
