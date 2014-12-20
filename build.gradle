@@ -1,0 +1,17 @@
+task hello << {
+	println "Hello"
+}
+hello << {
+	println "Hello newbies"
+}
+
+task hi << {
+	println "Do you know 2+2 can be 5"
+}
+hi.dependsOn hello
+
+hi.doFirst {
+	println "hello is executed"
+}
+
+defaultTasks "hi"
